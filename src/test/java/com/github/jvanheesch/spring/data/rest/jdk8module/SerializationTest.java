@@ -70,6 +70,33 @@ class SerializationTest {
                 .isNull();
     }
 
+    @Test
+    void givenAnEmbeddedStringMyOptionalOwner_whenSerializing_thenEmptyOptionalLeadsToNullAndNullLeadsToAbsentProperty() throws Exception {
+        EmbeddedStringMyOptionalOwner original = new EmbeddedStringMyOptionalOwner();
+
+        original.setStringMyOptional1(MyOptional.of("abc"));
+
+        // this line results in the following error:
+        // com.fasterxml.jackson.core.JsonGenerationException: Can not write a string, expecting field name (context: Object)
+        String json = serialize(objectMapper, original);
+
+        JSONAssert.assertEquals(
+                readJsonFromClassPath("EmbeddedStringMyOptionalOwner.json"),
+                json,
+                JSONCompareMode.LENIENT
+        );
+    }
+
+    @Test
+    void givenAnEmbeddedStringMyOptionalOwner_whenDeserializing_thenNullLeadsToEmptyOptionalAndAbsentPropertyLeadsToNull() throws Exception {
+        String json = readJsonFromClassPath("EmbeddedStringMyOptionalOwner.json");
+
+        EmbeddedStringMyOptionalOwner deserialized = objectMapper.readValue(json, EmbeddedStringMyOptionalOwner.class);
+
+        assertThat(deserialized.getStringMyOptional1().get())
+                .isEqualTo("abc");
+    }
+
     private String readJsonFromClassPath(String path) throws IOException {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(new ClassPathResource(path).getInputStream()))) {
             return br.lines().collect(Collectors.joining(System.lineSeparator()));

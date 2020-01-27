@@ -24,6 +24,8 @@
  */
 package com.github.jvanheesch.spring.data.rest.jdk8module;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Embedded;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -59,6 +61,7 @@ import java.util.stream.Stream;
  * @param <T> the type of value
  * @since 1.8
  */
+@Embeddable
 public final class MyOptional<T> {
     /**
      * Common instance for {@code empty()}.
@@ -76,7 +79,7 @@ public final class MyOptional<T> {
      * @implNote Generally only one empty instance, {@link MyOptional#EMPTY},
      * should exist per VM.
      */
-    private MyOptional() {
+    public MyOptional() {
         this.value = null;
     }
 
