@@ -8,7 +8,7 @@ import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
 import com.fasterxml.jackson.databind.ser.Serializers;
 import com.fasterxml.jackson.databind.type.ReferenceType;
 
-import java.util.Optional;
+import com.github.jvanheesch.spring.data.rest.jdk8module.MyOptional;
 
 public class MyJdk8Serializers extends Serializers.Base
     implements java.io.Serializable
@@ -21,7 +21,7 @@ public class MyJdk8Serializers extends Serializers.Base
             TypeSerializer contentTypeSerializer, JsonSerializer<Object> contentValueSerializer)
     {
         final Class<?> raw = refType.getRawClass();
-        if (Optional.class.isAssignableFrom(raw)) {
+        if (MyOptional.class.isAssignableFrom(raw)) {
             boolean staticTyping = (contentTypeSerializer == null)
                     && config.isEnabled(MapperFeature.USE_STATIC_TYPING);
             return new MyOptionalSerializer(refType, staticTyping,

@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.type.TypeFactory;
 import com.fasterxml.jackson.databind.type.TypeModifier;
 
 import java.lang.reflect.Type;
-import java.util.Optional;
+import com.github.jvanheesch.spring.data.rest.jdk8module.MyOptional;
 
 /**
  * We need to ensure `Optional` is a `ReferenceType`
@@ -27,7 +27,7 @@ public class MyJdk8TypeModifier extends TypeModifier
 
         JavaType refType;
 
-        if (raw == Optional.class) {
+        if (raw == MyOptional.class) {
             // 19-Oct-2015, tatu: Looks like we may be missing type information occasionally,
             //    perhaps due to raw types.
             refType = type.containedTypeOrUnknown(0);
