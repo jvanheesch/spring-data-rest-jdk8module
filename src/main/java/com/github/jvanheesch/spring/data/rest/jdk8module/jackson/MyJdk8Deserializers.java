@@ -7,7 +7,7 @@ import com.fasterxml.jackson.databind.deser.Deserializers;
 import com.fasterxml.jackson.databind.jsontype.TypeDeserializer;
 import com.fasterxml.jackson.databind.type.ReferenceType;
 
-import java.util.Optional;
+import com.github.jvanheesch.spring.data.rest.jdk8module.MyOptional;
 
 public class MyJdk8Deserializers
     extends Deserializers.Base
@@ -20,7 +20,7 @@ public class MyJdk8Deserializers
             DeserializationConfig config, BeanDescription beanDesc,
             TypeDeserializer contentTypeDeserializer, JsonDeserializer<?> contentDeserializer)
     {
-        if (refType.hasRawClass(Optional.class)) {
+        if (refType.hasRawClass(MyOptional.class)) {
             return new MyOptionalDeserializer(refType, null, contentTypeDeserializer,contentDeserializer);
         }
         // 21-Oct-2015, tatu: Should probably consider possibility of custom deserializer being

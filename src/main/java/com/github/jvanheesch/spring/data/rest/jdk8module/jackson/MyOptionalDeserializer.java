@@ -8,10 +8,10 @@ import com.fasterxml.jackson.databind.deser.ValueInstantiator;
 import com.fasterxml.jackson.databind.deser.std.ReferenceTypeDeserializer;
 import com.fasterxml.jackson.databind.jsontype.TypeDeserializer;
 
-import java.util.Optional;
+import com.github.jvanheesch.spring.data.rest.jdk8module.MyOptional;
 
 final class MyOptionalDeserializer
-    extends ReferenceTypeDeserializer<Optional<?>>
+    extends ReferenceTypeDeserializer<MyOptional<?>>
 {
     private static final long serialVersionUID = 1L;
 
@@ -43,9 +43,9 @@ final class MyOptionalDeserializer
     }
 
     @Override
-    public Optional<?> getNullValue(DeserializationContext ctxt) throws JsonMappingException {
+    public MyOptional<?> getNullValue(DeserializationContext ctxt) throws JsonMappingException {
         // 07-May-2019, tatu: [databind#2303], needed for nested ReferenceTypes
-        return Optional.ofNullable(_valueDeserializer.getNullValue(ctxt));
+        return MyOptional.ofNullable(_valueDeserializer.getNullValue(ctxt));
     }
 
     @Override
@@ -57,18 +57,18 @@ final class MyOptionalDeserializer
     }
 
     @Override
-    public Optional<?> referenceValue(Object contents) {
-        return Optional.ofNullable(contents);
+    public MyOptional<?> referenceValue(Object contents) {
+        return MyOptional.ofNullable(contents);
     }
 
     @Override
-    public Object getReferenced(Optional<?> reference) {
+    public Object getReferenced(MyOptional<?> reference) {
         return reference.get();
     }
 
     @Override // since 2.9
-    public Optional<?> updateReference(Optional<?> reference, Object contents) {
-        return Optional.ofNullable(contents);
+    public MyOptional<?> updateReference(MyOptional<?> reference, Object contents) {
+        return MyOptional.ofNullable(contents);
     }
 
     // Default ought to be fine:

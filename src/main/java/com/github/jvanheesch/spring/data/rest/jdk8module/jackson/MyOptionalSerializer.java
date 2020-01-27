@@ -1,6 +1,6 @@
 package com.github.jvanheesch.spring.data.rest.jdk8module.jackson;
 
-import java.util.Optional;
+import com.github.jvanheesch.spring.data.rest.jdk8module.MyOptional;
 
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
@@ -9,7 +9,7 @@ import com.fasterxml.jackson.databind.type.ReferenceType;
 import com.fasterxml.jackson.databind.util.NameTransformer;
 
 public class MyOptionalSerializer
-    extends ReferenceTypeSerializer<Optional<?>> // since 2.9
+    extends ReferenceTypeSerializer<MyOptional<?>> // since 2.9
 {
     private static final long serialVersionUID = 1L;
 
@@ -34,17 +34,17 @@ public class MyOptionalSerializer
     }
 
     @Override
-    protected ReferenceTypeSerializer<Optional<?>> withResolved(BeanProperty prop,
-            TypeSerializer vts, JsonSerializer<?> valueSer,
-            NameTransformer unwrapper)
+    protected ReferenceTypeSerializer<MyOptional<?>> withResolved(BeanProperty prop,
+                                                                  TypeSerializer vts, JsonSerializer<?> valueSer,
+                                                                  NameTransformer unwrapper)
     {
         return new MyOptionalSerializer(this, prop, vts, valueSer, unwrapper,
                 _suppressableValue, _suppressNulls);
     }
 
     @Override
-    public ReferenceTypeSerializer<Optional<?>> withContentInclusion(Object suppressableValue,
-            boolean suppressNulls)
+    public ReferenceTypeSerializer<MyOptional<?>> withContentInclusion(Object suppressableValue,
+                                                                       boolean suppressNulls)
     {
         return new MyOptionalSerializer(this, _property, _valueTypeSerializer,
                 _valueSerializer, _unwrapper,
@@ -58,17 +58,17 @@ public class MyOptionalSerializer
      */
 
     @Override
-    protected boolean _isValuePresent(Optional<?> value) {
+    protected boolean _isValuePresent(MyOptional<?> value) {
         return value.isPresent();
     }
 
     @Override
-    protected Object _getReferenced(Optional<?> value) {
+    protected Object _getReferenced(MyOptional<?> value) {
         return value.get();
     }
 
     @Override
-    protected Object _getReferencedIfPresent(Optional<?> value) {
+    protected Object _getReferencedIfPresent(MyOptional<?> value) {
         return value.isPresent() ? value.get() : null;
     }
 }
