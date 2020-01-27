@@ -1,0 +1,47 @@
+package com.github.jvanheesch.spring.data.rest.jdk8module.jackson;
+
+import com.fasterxml.jackson.databind.JavaType;
+import com.fasterxml.jackson.databind.type.ReferenceType;
+import com.fasterxml.jackson.databind.type.TypeBindings;
+import com.fasterxml.jackson.databind.type.TypeFactory;
+import com.fasterxml.jackson.databind.type.TypeModifier;
+
+import java.lang.reflect.Type;
+import java.util.Optional;
+
+/**
+ * We need to ensure `Optional` is a `ReferenceType`
+ */
+public class MyJdk8TypeModifier extends TypeModifier
+    implements java.io.Serializable
+{
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    public JavaType modifyType(JavaType type, Type jdkType, TypeBindings bindings, TypeFactory typeFactory)
+    {
+        if (type.isReferenceType() || type.isContainerType()) {
+            return type;
+        }
+        final Class<?> raw = type.getRawClass();
+
+        JavaType refType;
+
+        if (raw == Optional.class) {
+            // 19-Oct-2015, tatu: Looks like we may be missing type information occasionally,
+            //    perhaps due to raw types.
+            refType = type.containedTypeOrUnknown(0);
+        }
+//        else if (raw == OptionalInt.class) {
+//            refType = typeFactory.constructType(Integer.TYPE);
+//        } else if (raw == OptionalLong.class) {
+//            refType = typeFactory.constructType(Long.TYPE);
+//        } else if (raw == OptionalDouble.class) {
+//            refType = typeFactory.constructType(Double.TYPE);
+//        }
+        else {
+            return type;
+        }
+        return ReferenceType.upgradeFrom(type, refType);
+    }
+}
