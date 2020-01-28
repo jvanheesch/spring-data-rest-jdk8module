@@ -65,11 +65,11 @@ public class MyOptionalSerializer
 
     @Override
     protected Object _getReferenced(MyOptional<?> value) {
-        return new Container<>(value.get());
+        return value.get();
     }
 
     @Override
     protected Object _getReferencedIfPresent(MyOptional<?> value) {
-        return value.isPresent() ? new Container<>(value.get()) : null;
+        return value.isPresent() ? value.get() : null;
     }
 }
