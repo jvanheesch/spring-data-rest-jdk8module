@@ -1,5 +1,7 @@
 package com.github.jvanheesch.spring.data.rest.jdk8module.scratch;
 
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
+
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -8,6 +10,7 @@ import javax.persistence.Id;
 public class SomeEntity {
     @Id
     private Long id;
+    @JsonUnwrapped
     @Embedded
     private SomeEmbeddable someEmbeddable;
 
