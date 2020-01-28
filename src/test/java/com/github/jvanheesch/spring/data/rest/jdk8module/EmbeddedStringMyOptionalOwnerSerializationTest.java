@@ -38,6 +38,8 @@ class EmbeddedStringMyOptionalOwnerSerializationTest {
         EmbeddedStringMyOptionalOwner original = new EmbeddedStringMyOptionalOwner();
 
         original.setStringMyOptional1(MyOptional.of("abc"));
+        original.setStringMyOptional2(MyOptional.empty());
+        original.setStringMyOptional3(null);
 
         String json = serialize(objectMapper, original);
 
