@@ -4,9 +4,6 @@ import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.github.jvanheesch.spring.data.rest.jdk8module.MyOptional;
-import com.github.jvanheesch.spring.data.rest.jdk8module.StringContainer;
-import com.github.jvanheesch.spring.data.rest.jdk8module.StringMyOptionalOwner;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,14 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
-import org.springframework.http.HttpOutputMessage;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Type;
 import java.util.stream.Collectors;
 
 @ExtendWith(SpringExtension.class)
@@ -40,7 +35,9 @@ class SomeEntitySerializationTest {
     void givenAStringMyOptionalOwner_whenSerializing_thenEmptyOptionalLeadsToNullAndNullLeadsToAbsentProperty() throws Exception {
         SomeEntity original = new SomeEntity();
 
-        original.setSomeEmbeddable(new SomeEmbeddable("abc"));
+        original.setSomeEmbeddable1(new SomeEmbeddable("abc"));
+        original.setSomeEmbeddable2(new SomeEmbeddable());
+        original.setSomeEmbeddable2(null);
 
         String json = serialize(objectMapper, original);
 
