@@ -7,8 +7,6 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.skyscreamer.jsonassert.JSONAssert;
-import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.core.io.ClassPathResource;
@@ -22,8 +20,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.stream.Collectors;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -43,7 +39,8 @@ class SerializationTest {
 
         original.setStringMyOptional1(MyOptional.of("abc"));
         original.setStringMyOptional2(MyOptional.empty());
-        original.setStringContainer(new StringContainer("abc"));
+        original.setStringContainer1(new StringContainer("abc"));
+        original.setStringContainer2(new StringContainer("def"));
         // variables op type Optional<X> should never be null.
         // this code is only here to illustrate jackson's serialization behavior
         original.setStringMyOptional3(null);

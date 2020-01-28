@@ -1,11 +1,9 @@
 package com.github.jvanheesch.spring.data.rest.jdk8module;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 @Entity
 public class StringMyOptionalOwner {
@@ -18,7 +16,12 @@ public class StringMyOptionalOwner {
     @Transient
     private MyOptional<String> stringMyOptional3;
     @Embedded
-    private StringContainer stringContainer;
+    @AttributeOverride(name = "value", column = @Column(name = "VALUE_1"))
+    private StringContainer stringContainer1;
+    @JsonUnwrapped
+    @Embedded
+    @AttributeOverride(name = "value", column = @Column(name = "VALUE_2"))
+    private StringContainer stringContainer2;
 
     public Long getId() {
         return id;
@@ -55,11 +58,19 @@ public class StringMyOptionalOwner {
         this.stringMyOptional3 = stringMyOptional3;
     }
 
-    public StringContainer getStringContainer() {
-        return stringContainer;
+    public StringContainer getStringContainer1() {
+        return stringContainer1;
     }
 
-    public void setStringContainer(StringContainer stringContainer) {
-        this.stringContainer = stringContainer;
+    public void setStringContainer1(StringContainer stringContainer) {
+        this.stringContainer1 = stringContainer;
+    }
+
+    public StringContainer getStringContainer2() {
+        return stringContainer2;
+    }
+
+    public void setStringContainer2(StringContainer stringContainer2) {
+        this.stringContainer2 = stringContainer2;
     }
 }
