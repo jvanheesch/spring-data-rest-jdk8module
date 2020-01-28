@@ -9,13 +9,13 @@ import javax.persistence.*;
 public class StringMyOptionalOwner {
     @Id
     private Long id;
-    // @JsonUnwrapped
+     @JsonUnwrapped
     @Transient
     private MyOptional<String> stringMyOptional1;
-    // @JsonUnwrapped
+     @JsonUnwrapped
     @Transient
     private MyOptional<String> stringMyOptional2;
-    // @JsonUnwrapped
+     @JsonUnwrapped
     @Transient
     private MyOptional<String> stringMyOptional3;
     @Embedded
