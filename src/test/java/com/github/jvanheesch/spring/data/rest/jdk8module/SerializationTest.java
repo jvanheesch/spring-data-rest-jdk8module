@@ -41,6 +41,8 @@ class SerializationTest {
         original.setStringMyOptional2(MyOptional.empty());
         original.setStringContainer1(new StringContainer("abc"));
         original.setStringContainer2(new StringContainer("def"));
+        original.setStringContainer3(null);
+        original.setStringContainer4(null);
         // variables op type Optional<X> should never be null.
         // this code is only here to illustrate jackson's serialization behavior
         original.setStringMyOptional3(null);

@@ -22,6 +22,13 @@ public class StringMyOptionalOwner {
     @Embedded
     @AttributeOverride(name = "value", column = @Column(name = "VALUE_2"))
     private StringContainer stringContainer2;
+    @Embedded
+    @AttributeOverride(name = "value", column = @Column(name = "VALUE_3"))
+    private StringContainer stringContainer3;
+    @JsonUnwrapped
+    @Embedded
+    @AttributeOverride(name = "value", column = @Column(name = "VALUE_4"))
+    private StringContainer stringContainer4;
 
     public Long getId() {
         return id;
@@ -72,5 +79,21 @@ public class StringMyOptionalOwner {
 
     public void setStringContainer2(StringContainer stringContainer2) {
         this.stringContainer2 = stringContainer2;
+    }
+
+    public StringContainer getStringContainer3() {
+        return stringContainer3;
+    }
+
+    public void setStringContainer3(StringContainer stringContainer3) {
+        this.stringContainer3 = stringContainer3;
+    }
+
+    public StringContainer getStringContainer4() {
+        return stringContainer4;
+    }
+
+    public void setStringContainer4(StringContainer stringContainer4) {
+        this.stringContainer4 = stringContainer4;
     }
 }
