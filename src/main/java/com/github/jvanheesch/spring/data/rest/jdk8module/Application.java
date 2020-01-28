@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.fasterxml.jackson.databind.module.SimpleDeserializers;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.databind.module.SimpleSerializers;
+import com.fasterxml.jackson.databind.util.NameTransformer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -45,6 +46,17 @@ public class Application {
                 } else {
                     gen.writeNull();
                 }
+            }
+
+            @Override
+            public boolean isUnwrappingSerializer() {
+                return super.isUnwrappingSerializer();
+            }
+
+            // we komen hier 2x in, lijkt NIET owv 2x @JsonUnwrapped ...
+            @Override
+            public JsonSerializer<StringContainer> unwrappingSerializer(NameTransformer unwrapper) {
+                return super.unwrappingSerializer(unwrapper);
             }
         }
 
