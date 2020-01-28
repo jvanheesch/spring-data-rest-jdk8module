@@ -16,5 +16,6 @@ public class SpringRestConfigurer implements RepositoryRestConfigurer {
     @Override
     public void configureJacksonObjectMapper(ObjectMapper objectMapper) {
         objectMapper.registerModule(new MyJdk8Module());
+        objectMapper.registerModule(new Application.CustomSerializationOptionsModule());
     }
 }
