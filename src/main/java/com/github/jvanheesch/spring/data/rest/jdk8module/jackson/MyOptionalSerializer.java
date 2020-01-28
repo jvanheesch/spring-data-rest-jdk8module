@@ -7,6 +7,7 @@ import com.fasterxml.jackson.databind.jsontype.TypeSerializer;
 import com.fasterxml.jackson.databind.ser.std.ReferenceTypeSerializer;
 import com.fasterxml.jackson.databind.type.ReferenceType;
 import com.fasterxml.jackson.databind.util.NameTransformer;
+import com.github.jvanheesch.spring.data.rest.jdk8module.StringContainer;
 
 public class MyOptionalSerializer
     extends ReferenceTypeSerializer<MyOptional<?>> // since 2.9
@@ -64,11 +65,11 @@ public class MyOptionalSerializer
 
     @Override
     protected Object _getReferenced(MyOptional<?> value) {
-        return value.get();
+        return new Container<>(value.get());
     }
 
     @Override
     protected Object _getReferencedIfPresent(MyOptional<?> value) {
-        return value.isPresent() ? value.get() : null;
+        return value.isPresent() ? new Container<>(value.get()) : null;
     }
 }
