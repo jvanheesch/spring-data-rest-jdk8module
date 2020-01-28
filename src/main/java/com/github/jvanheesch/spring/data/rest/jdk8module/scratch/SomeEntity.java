@@ -10,7 +10,7 @@ import javax.persistence.Id;
 public class SomeEntity {
     @Id
     private Long id;
-    @JsonUnwrapped
+    // @JsonUnwrapped
     @Embedded
     private SomeEmbeddable someEmbeddable;
 
