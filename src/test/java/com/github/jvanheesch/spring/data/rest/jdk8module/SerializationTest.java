@@ -57,19 +57,20 @@ class SerializationTest {
 //        );
     }
 
-//    @Test
-//    void givenAStringMyOptionalOwner_whenDeserializing_thenNullLeadsToEmptyOptionalAndAbsentPropertyLeadsToNull() throws Exception {
-//        String json = readJsonFromClassPath("StringMyOptionalOwner.json");
-//
-//        StringMyOptionalOwner deserialized = objectMapper.readValue(json, StringMyOptionalOwner.class);
-//
+    @Test
+    void givenAStringMyOptionalOwner_whenDeserializing_thenNullLeadsToEmptyOptionalAndAbsentPropertyLeadsToNull() throws Exception {
+        String json = readJsonFromClassPath("ser.json");
+
+        StringMyOptionalOwner deserialized = objectMapper.readValue(json, StringMyOptionalOwner.class);
+
+        System.out.println("todo");
 //        assertThat(deserialized.getStringMyOptional1().get())
 //                .isEqualTo("abc");
 //        assertThat(deserialized.getStringMyOptional2().isEmpty())
 //                .isTrue();
 //        assertThat(deserialized.getStringMyOptional3())
 //                .isNull();
-//    }
+    }
 //
 //    @Test
 //    void givenAnEmbeddedStringMyOptionalOwner_whenSerializing_thenEmptyOptionalLeadsToNullAndNullLeadsToAbsentProperty() throws Exception {

@@ -1,0 +1,9 @@
+{
+  "stringMyOptional1" : "abc",
+  "stringMyOptional2" : null,
+  "stringContainer1" : {
+    "content" : "abc"
+  },
+  "stringContainer2" : "def",
+  "stringContainer3" : null
+}
