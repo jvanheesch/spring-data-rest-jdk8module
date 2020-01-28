@@ -2,6 +2,7 @@ package com.github.jvanheesch.spring.data.rest.jdk8module;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
@@ -16,6 +17,8 @@ public class StringMyOptionalOwner {
     private MyOptional<String> stringMyOptional2;
     @Transient
     private MyOptional<String> stringMyOptional3;
+    @Embedded
+    private StringContainer stringContainer;
 
     public Long getId() {
         return id;
@@ -50,5 +53,13 @@ public class StringMyOptionalOwner {
 
     public void setStringMyOptional3(MyOptional<String> stringMyOptional3) {
         this.stringMyOptional3 = stringMyOptional3;
+    }
+
+    public StringContainer getStringContainer() {
+        return stringContainer;
+    }
+
+    public void setStringContainer(StringContainer stringContainer) {
+        this.stringContainer = stringContainer;
     }
 }
