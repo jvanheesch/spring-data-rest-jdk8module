@@ -11,7 +11,6 @@ public class Conclusion {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EUTR_CONCLUSION_IDGEN")
     private Long id;
-    @JsonUnwrapped
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "OW_EVALUATION_ID")
     private OriginWoodEvaluation originWoodEvaluation;
