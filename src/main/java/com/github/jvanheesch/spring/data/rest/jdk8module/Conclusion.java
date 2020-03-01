@@ -1,5 +1,6 @@
 package com.github.jvanheesch.spring.data.rest.jdk8module;
 
+import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ public class Conclusion {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "EUTR_CONCLUSION_IDGEN")
     private Long id;
+    @JsonUnwrapped
     @RestResource(exported = false)
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "OW_EVALUATION_ID")
