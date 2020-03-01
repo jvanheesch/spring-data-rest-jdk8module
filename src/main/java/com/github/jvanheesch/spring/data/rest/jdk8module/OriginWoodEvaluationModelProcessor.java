@@ -6,9 +6,9 @@ import org.springframework.hateoas.server.RepresentationModelProcessor;
 import org.springframework.stereotype.Component;
 
 @Component
-public class VerdictRecordModelProcessor implements RepresentationModelProcessor<EntityModel<VerdictRecord>> {
+public class OriginWoodEvaluationModelProcessor implements RepresentationModelProcessor<EntityModel<OriginWoodEvaluation>> {
     @Override
-    public EntityModel<VerdictRecord> process(EntityModel<VerdictRecord> model) {
+    public EntityModel<OriginWoodEvaluation> process(EntityModel<OriginWoodEvaluation> model) {
         model.add(new Link("https://www.google.com", "google"));
         return model;
     }
