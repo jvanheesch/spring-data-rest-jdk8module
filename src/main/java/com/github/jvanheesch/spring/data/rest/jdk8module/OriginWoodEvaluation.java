@@ -1,5 +1,7 @@
 package com.github.jvanheesch.spring.data.rest.jdk8module;
 
+import org.springframework.data.rest.core.annotation.RestResource;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,12 +11,16 @@ public class OriginWoodEvaluation {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "OW_EVALUATION_IDGEN")
     private Long id;
+    @RestResource(exported = false)
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private VerdictRecord supplierLocatedInEurope;
+    @RestResource(exported = false)
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private VerdictRecord flegtLicense;
+    @RestResource(exported = false)
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private VerdictRecord citesLicense;
+    @RestResource(exported = false)
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private VerdictRecord fromIndonesia;
 

@@ -1,0 +1,18 @@
+package com.github.jvanheesch.spring.data.rest.jdk8module;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.data.rest.core.annotation.RestResource;
+
+import java.util.Optional;
+
+@RepositoryRestResource
+public interface VerdictRecordRepository extends CrudRepository<VerdictRecord, Long> {
+    @RestResource
+    @Override
+    Iterable<VerdictRecord> findAll();
+
+    @RestResource
+    @Override
+    Optional<VerdictRecord> findById(Long id);
+}
