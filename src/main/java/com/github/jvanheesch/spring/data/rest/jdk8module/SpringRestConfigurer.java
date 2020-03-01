@@ -31,10 +31,10 @@ public class SpringRestConfigurer implements RepositoryRestConfigurer {
     /**
      * https://github.com/spring-projects/spring-data-rest/blob/master/src/main/asciidoc/custom-jackson-deserialization.adoc
      */
-//    @Bean
-//    public SimpleModule customSerializationOptionsModule(VerdictRepository verdictRepository) {
-//        return new CustomSerializationOptionsModule(verdictRepository);
-//    }
+    @Bean
+    public SimpleModule customSerializationOptionsModule(VerdictRepository verdictRepository) {
+        return new CustomSerializationOptionsModule(verdictRepository);
+    }
 
     public static class CustomSerializationOptionsModule extends SimpleModule {
         private final VerdictRepository verdictRepository;
