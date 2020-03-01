@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.github.jvanheesch.spring.data.rest.jdk8module.jackson.MyJdk8Module;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -78,6 +79,24 @@ class SerializationTest {
 
         // this line results in the following error:
         // com.fasterxml.jackson.core.JsonGenerationException: Can not write a string, expecting field name (context: Object)
+        String json = serialize(objectMapper, original);
+
+        JSONAssert.assertEquals(
+                readJsonFromClassPath("EmbeddedStringMyOptionalOwner.json"),
+                json,
+                JSONCompareMode.LENIENT
+        );
+    }
+
+    @Test
+    void givenAnEmbeddedStringMyOptionalOwner_whenSerializingWithoutUsingSDR_thenCorrectSerialization() throws Exception {
+        EmbeddedStringMyOptionalOwner original = new EmbeddedStringMyOptionalOwner();
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new MyJdk8Module());
+
+        original.setStringMyOptional1(MyOptional.of("abc"));
+
         String json = serialize(objectMapper, original);
 
         JSONAssert.assertEquals(
