@@ -41,8 +41,8 @@ public class Application {
         nonCompliant.setId(1L);
         nonCompliant.setName("Non-compliant");
 
-        this.verdictRepository.save(compliant);
-        this.verdictRepository.save(nonCompliant);
+        compliant = this.verdictRepository.save(compliant);
+        nonCompliant = this.verdictRepository.save(nonCompliant);
 
         Conclusion conclusion = new Conclusion();
         OriginWoodEvaluation originWoodEvaluation = new OriginWoodEvaluation();
