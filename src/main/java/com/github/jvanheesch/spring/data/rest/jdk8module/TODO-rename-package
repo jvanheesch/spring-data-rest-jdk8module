@@ -2,3 +2,4 @@ TODO:
 - deze stap opnieuw manueel uitvoeren
 - nagaan why the fuck annotations ineens op getters moeten staan bij MyJdk8Module...
 - core issue (hibernate/sdr) verder uitwerken
+- misschien start ik dit best door gewoon te forken van jdk8module ... >.<
