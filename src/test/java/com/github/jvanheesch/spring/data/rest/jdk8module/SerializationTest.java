@@ -54,6 +54,18 @@ class SerializationTest {
                 json,
                 JSONCompareMode.LENIENT
         );
+
+        json = "{\n" +
+                "  \"stringMyOptional1\": \"abc\",\n" +
+                "  \"stringMyOptional2\": null,\n" +
+                "  \"stringMyOptional3\": null\n" +
+                "}";
+
+        JSONAssert.assertEquals(
+                readJsonFromClassPath("StringMyOptionalOwner.json"),
+                json,
+                JSONCompareMode.LENIENT
+        );
     }
 
     @Test
