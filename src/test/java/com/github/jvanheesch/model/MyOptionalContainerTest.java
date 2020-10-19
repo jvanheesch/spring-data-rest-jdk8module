@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.github.jvanheesch.spring.data.rest.jdk8module.MyOptional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -20,14 +21,13 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-class OptionalContainerTest {
+class MyOptionalContainerTest {
     @Autowired
     private RepositoryRestMvcConfiguration repositoryRestMvcConfiguration;
     private ObjectMapper objectMapper;
@@ -38,35 +38,35 @@ class OptionalContainerTest {
     }
 
     @Test
-    void givenAnOptionalContainer_whenSerializing_thenEmptyOptionalLeadsToNullAndNullLeadsToAbsentProperty() throws Exception {
-        OptionalContainer original = new OptionalContainer();
+    void givenAnMyOptionalContainer_whenSerializing_thenEmptyMyOptionalLeadsToNullAndNullLeadsToAbsentProperty() throws Exception {
+        MyOptionalContainer original = new MyOptionalContainer();
 
-        original.setOptional1(Optional.of("abc"));
-        original.setOptional2(Optional.empty());
-        // variables op type Optional<X> should never be null.
+        original.setMyOptional1(MyOptional.of("abc"));
+        original.setMyOptional2(MyOptional.empty());
+        // variables op type MyOptional<X> should never be null.
         // this code is only here to illustrate jackson's serialization behavior
-        original.setOptional3(null);
+        original.setMyOptional3(null);
 
         String json = serialize(objectMapper, original);
 
         JSONAssert.assertEquals(
-                readJsonFromClassPath("OptionalContainer.json"),
+                readJsonFromClassPath("MyOptionalContainer.json"),
                 json,
                 JSONCompareMode.NON_EXTENSIBLE
         );
     }
 
     @Test
-    void givenAnOptionalContainer_whenDeserializing_thenNullLeadsToEmptyOptionalAndAbsentPropertyLeadsToNull() throws Exception {
-        String json = readJsonFromClassPath("OptionalContainer.json");
+    void givenAnMyOptionalContainer_whenDeserializing_thenNullLeadsToEmptyMyOptionalAndAbsentPropertyLeadsToNull() throws Exception {
+        String json = readJsonFromClassPath("MyOptionalContainer.json");
 
-        OptionalContainer deserialized = objectMapper.readValue(json, OptionalContainer.class);
+        MyOptionalContainer deserialized = objectMapper.readValue(json, MyOptionalContainer.class);
 
-        assertThat(deserialized.getOptional1().get())
+        assertThat(deserialized.getMyOptional1().get())
                 .isEqualTo("abc");
-        assertThat(deserialized.getOptional2().isEmpty())
+        assertThat(deserialized.getMyOptional2().isEmpty())
                 .isTrue();
-        assertThat(deserialized.getOptional3())
+        assertThat(deserialized.getMyOptional3())
                 .isNull();
     }
 
