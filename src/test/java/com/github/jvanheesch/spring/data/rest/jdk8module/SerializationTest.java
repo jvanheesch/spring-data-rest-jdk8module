@@ -52,19 +52,7 @@ class SerializationTest {
         JSONAssert.assertEquals(
                 readJsonFromClassPath("StringMyOptionalOwner.json"),
                 json,
-                JSONCompareMode.LENIENT
-        );
-
-        json = "{\n" +
-                "  \"stringMyOptional1\": \"abc\",\n" +
-                "  \"stringMyOptional2\": null,\n" +
-                "  \"stringMyOptional3\": null\n" +
-                "}";
-
-        JSONAssert.assertEquals(
-                readJsonFromClassPath("StringMyOptionalOwner.json"),
-                json,
-                JSONCompareMode.LENIENT
+                JSONCompareMode.NON_EXTENSIBLE
         );
     }
 
@@ -95,7 +83,7 @@ class SerializationTest {
         JSONAssert.assertEquals(
                 readJsonFromClassPath("EmbeddedStringMyOptionalOwner.json"),
                 json,
-                JSONCompareMode.LENIENT
+                JSONCompareMode.NON_EXTENSIBLE
         );
     }
 
