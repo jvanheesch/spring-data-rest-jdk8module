@@ -1,8 +1,5 @@
 package com.github.jvanheesch.model.serialization;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
-import com.fasterxml.jackson.annotation.JsonValue;
 import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
@@ -14,7 +11,6 @@ public class VerdictRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VERDICT_RECORD_IDGEN")
     private Long id;
-    @JsonUnwrapped
     @RestResource(exported = false)
     @OneToOne(fetch = FetchType.LAZY)
     private Verdict verdict;
