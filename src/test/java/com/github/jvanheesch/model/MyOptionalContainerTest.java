@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.github.jvanheesch.model.serialization.OriginWoodEvaluation;
 import com.github.jvanheesch.model.serialization.Verdict;
 import com.github.jvanheesch.model.serialization.VerdictRecord;
-import com.github.jvanheesch.spring.data.rest.jdk8module.MyOptional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,8 +24,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.stream.Collectors;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -61,39 +58,6 @@ class MyOptionalContainerTest {
                 json,
                 JSONCompareMode.NON_EXTENSIBLE
         );
-    }
-
-    @Test
-    void givenAnMyOptionalContainer_whenSerializing_thenEmptyMyOptionalLeadsToNullAndNullLeadsToAbsentProperty() throws Exception {
-        MyOptionalContainer original = new MyOptionalContainer();
-
-        original.setMyOptional1(MyOptional.of("abc"));
-        original.setMyOptional2(MyOptional.empty());
-        // variables op type MyOptional<X> should never be null.
-        // this code is only here to illustrate jackson's serialization behavior
-        original.setMyOptional3(null);
-
-        String json = serialize(objectMapper, original);
-
-        JSONAssert.assertEquals(
-                readJsonFromClassPath("MyOptionalContainer.json"),
-                json,
-                JSONCompareMode.NON_EXTENSIBLE
-        );
-    }
-
-    @Test
-    void givenAnMyOptionalContainer_whenDeserializing_thenNullLeadsToEmptyMyOptionalAndAbsentPropertyLeadsToNull() throws Exception {
-        String json = readJsonFromClassPath("MyOptionalContainer.json");
-
-        MyOptionalContainer deserialized = objectMapper.readValue(json, MyOptionalContainer.class);
-
-        assertThat(deserialized.getMyOptional1().get())
-                .isEqualTo("abc");
-        assertThat(deserialized.getMyOptional2().isEmpty())
-                .isTrue();
-        assertThat(deserialized.getMyOptional3())
-                .isNull();
     }
 
     private String readJsonFromClassPath(String path) throws IOException {
