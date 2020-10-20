@@ -17,7 +17,7 @@ public abstract class Verdict {
     @JsonProperty("label")
     private String name;
 
-    @JsonCreator
+//    @JsonCreator
     public Verdict(String name) {
         this.name = name;
     }
@@ -28,7 +28,7 @@ public abstract class Verdict {
         return id;
     }
 
-    @JsonValue
+//    @JsonValue
     public String getName() {
         return name;
     }

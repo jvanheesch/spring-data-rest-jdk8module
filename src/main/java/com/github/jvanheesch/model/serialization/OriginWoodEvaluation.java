@@ -11,16 +11,12 @@ public class OriginWoodEvaluation {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "OW_EVALUATION_IDGEN")
     private Long id;
-    @JsonUnwrapped // TODO_JORIS: kan die @JsonUnwrapped weg mbv custom unwrapping serializer ofzo?
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private VerdictRecord supplierLocatedInEurope;
-    @JsonUnwrapped
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private VerdictRecord flegtLicense;
-    @JsonUnwrapped
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private VerdictRecord citesLicense;
-    @JsonUnwrapped
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private VerdictRecord fromIndonesia;
     // dit nieuwe gedrag is volgens mij echter gewoon het juiste gedrag i.t.t. het oude ...

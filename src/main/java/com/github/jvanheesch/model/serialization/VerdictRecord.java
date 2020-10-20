@@ -17,7 +17,7 @@ public class VerdictRecord {
     @OneToOne(fetch = FetchType.LAZY)
     private Verdict verdict;
 
-    @JsonCreator
+//    @JsonCreator
     public VerdictRecord(Verdict verdict) {
         this.verdict = verdict;
     }
@@ -29,7 +29,7 @@ public class VerdictRecord {
         return id;
     }
 
-    @JsonValue
+//    @JsonValue
     public Verdict getVerdict() {
         return verdict;
     }
