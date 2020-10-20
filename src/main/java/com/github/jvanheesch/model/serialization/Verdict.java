@@ -3,7 +3,12 @@ package com.github.jvanheesch.model.serialization;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity(name = "VERDICT")
 public class Verdict {
+    @Id
     private Long id;
     private String name;
 

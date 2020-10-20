@@ -3,8 +3,15 @@ package com.github.jvanheesch.model.serialization;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+@Entity
 public class VerdictRecord {
+    @Id
     private Long id;
+    @OneToOne
     private Verdict verdict;
 
     @JsonCreator

@@ -2,14 +2,24 @@ package com.github.jvanheesch.model.serialization;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+@Entity
 public class OriginWoodEvaluation {
+    @Id
     private Long id;
+    @OneToOne
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private VerdictRecord supplierLocatedInEurope;
+    @OneToOne
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private VerdictRecord flegtLicense;
+    @OneToOne
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private VerdictRecord citesLicense;
+    @OneToOne
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private VerdictRecord fromIndonesia;
 
