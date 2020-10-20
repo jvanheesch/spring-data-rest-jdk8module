@@ -1,12 +1,10 @@
 package com.github.jvanheesch.model.serialization;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public class Verdict {
     private Long id;
-    @JsonProperty("label")
     private String name;
 
     @JsonCreator
