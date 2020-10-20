@@ -5,3 +5,6 @@ het probleem was, iirc, dat die resources er iut zien als:
 "_links":
 "_embedded":
 }
+daarbij geldt:
+- content property is unwrapped
+- _links en _embedded worden niet gerenderd als no content
