@@ -1,13 +1,7 @@
 package com.github.jvanheesch.model.serialization;
 
-import javax.persistence.*;
-
-@Entity
 public class OriginWoodOwner {
-    @Id
-    @GeneratedValue
     private Long id;
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private OriginWoodEvaluation originWoodEvaluation;
 
     public Long getId() {

@@ -1,21 +1,10 @@
 package com.github.jvanheesch.model.serialization;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "OW_EVALUATION")
-@SequenceGenerator(allocationSize = 1, name = "OW_EVALUATION_IDGEN", sequenceName = "OW_EVALUATION_SEQ")
 public class OriginWoodEvaluation {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "OW_EVALUATION_IDGEN")
     private Long id;
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private VerdictRecord supplierLocatedInEurope;
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private VerdictRecord flegtLicense;
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private VerdictRecord citesLicense;
-    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private VerdictRecord fromIndonesia;
 
     public Long getId() {

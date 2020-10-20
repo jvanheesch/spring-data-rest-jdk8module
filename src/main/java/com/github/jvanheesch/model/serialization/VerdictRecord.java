@@ -1,21 +1,13 @@
 package com.github.jvanheesch.model.serialization;
 
-import org.springframework.data.rest.core.annotation.RestResource;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "VERDICT_RECORD")
-@SequenceGenerator(allocationSize = 1, name = "VERDICT_RECORD_IDGEN", sequenceName = "VERDICT_RECORD_SEQ")
 public class VerdictRecord {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "VERDICT_RECORD_IDGEN")
     private Long id;
-    @RestResource(exported = false)
-    @OneToOne(fetch = FetchType.LAZY)
     private Verdict verdict;
 
-//    @JsonCreator
+    @JsonCreator
     public VerdictRecord(Verdict verdict) {
         this.verdict = verdict;
     }
@@ -27,7 +19,7 @@ public class VerdictRecord {
         return id;
     }
 
-//    @JsonValue
+    @JsonValue
     public Verdict getVerdict() {
         return verdict;
     }
