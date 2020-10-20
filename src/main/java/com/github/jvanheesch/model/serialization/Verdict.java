@@ -1,6 +1,8 @@
 package com.github.jvanheesch.model.serialization;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 import javax.persistence.*;
 
@@ -15,10 +17,18 @@ public abstract class Verdict {
     @JsonProperty("label")
     private String name;
 
+    @JsonCreator
+    public Verdict(String name) {
+        this.name = name;
+    }
+
+    public Verdict() {
+    }
     public Long getId() {
         return id;
     }
 
+    @JsonValue
     public String getName() {
         return name;
     }

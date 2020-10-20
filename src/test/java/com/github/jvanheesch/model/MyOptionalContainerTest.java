@@ -48,9 +48,12 @@ class MyOptionalContainerTest {
         Verdict verdict = new OriginWoodLicenseValidityVerdict();
         verdict.setName("leuterverdict");
         originWoodEvaluation.setFromIndonesia(new VerdictRecord(verdict));
+        originWoodEvaluation.setCitesLicense(new VerdictRecord());
+        originWoodEvaluation.setFlegtLicense(null);
 
         String json = serialize(objectMapper, originWoodEvaluation);
 
+        System.out.println(json);
         JSONAssert.assertEquals(
                 readJsonFromClassPath("MyOptionalContainer.json"),
                 json,
