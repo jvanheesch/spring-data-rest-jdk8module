@@ -4,6 +4,10 @@ import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.github.jvanheesch.model.serialization.OriginWoodEvaluation;
+import com.github.jvanheesch.model.serialization.OriginWoodLicenseValidityVerdict;
+import com.github.jvanheesch.model.serialization.Verdict;
+import com.github.jvanheesch.model.serialization.VerdictRecord;
 import com.github.jvanheesch.spring.data.rest.jdk8module.MyOptional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,6 +39,23 @@ class MyOptionalContainerTest {
     @BeforeEach
     public void initializeObjectMapper() {
         this.objectMapper = repositoryRestMvcConfiguration.halObjectMapper();
+    }
+
+    @Test
+    void leuter() throws Exception {
+        OriginWoodEvaluation originWoodEvaluation = new OriginWoodEvaluation();
+
+        Verdict verdict = new OriginWoodLicenseValidityVerdict();
+        verdict.setName("leuterverdict");
+        originWoodEvaluation.setFromIndonesia(new VerdictRecord(verdict));
+
+        String json = serialize(objectMapper, originWoodEvaluation);
+
+        JSONAssert.assertEquals(
+                readJsonFromClassPath("MyOptionalContainer.json"),
+                json,
+                JSONCompareMode.NON_EXTENSIBLE
+        );
     }
 
     @Test
