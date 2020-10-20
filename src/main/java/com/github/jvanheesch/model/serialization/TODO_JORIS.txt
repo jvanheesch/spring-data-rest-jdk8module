@@ -1,1 +1,7 @@
-TODO_JORIS: bekijk jdk8module nog eens, want dit gedrag moest toch analoog zijn aan dates ofzoiets?
+Notes:
+het probleem was, iirc, dat die resources er iut zien als:
+{
+"content":
+"_links":
+"_embedded":
+}
