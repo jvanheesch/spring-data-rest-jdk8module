@@ -46,6 +46,11 @@ class MyOptionalContainerTest {
         originWoodEvaluation.setCitesLicense(new VerdictRecord());
         originWoodEvaluation.setFlegtLicense(null);
 
+        ObjectMapper o = new ObjectMapper();
+        System.out.println(serialize(o, verdict));
+        System.out.println(serialize(o, new VerdictRecord(verdict)));
+        System.out.println(serialize(o, originWoodEvaluation));
+
         System.out.println(serialize(objectMapper, verdict));
         System.out.println(serialize(objectMapper, new VerdictRecord(verdict)));
         System.out.println(serialize(objectMapper, originWoodEvaluation));
