@@ -44,7 +44,7 @@ class MyOptionalContainerTest {
     void leuter() throws Exception {
         OriginWoodEvaluation originWoodEvaluation = new OriginWoodEvaluation();
 
-        Verdict verdict = new Verdict("leuterverdict");
+        Verdict verdict = new Verdict("someVerdict");
         originWoodEvaluation.setFromIndonesia(new VerdictRecord(verdict));
         originWoodEvaluation.setCitesLicense(new VerdictRecord());
         originWoodEvaluation.setFlegtLicense(null);
@@ -57,7 +57,7 @@ class MyOptionalContainerTest {
 
         System.out.println(json);
         JSONAssert.assertEquals(
-                readJsonFromClassPath("MyOptionalContainer.json"),
+                readJsonFromClassPath("OriginWoodEvaluation.json"),
                 json,
                 JSONCompareMode.NON_EXTENSIBLE
         );
