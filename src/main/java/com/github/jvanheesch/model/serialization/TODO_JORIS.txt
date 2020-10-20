@@ -8,3 +8,6 @@ het probleem was, iirc, dat die resources er iut zien als:
 daarbij geldt:
 - content property is unwrapped
 - _links en _embedded worden niet gerenderd als no content
+
+De case wordt dus:
+Serializing unexported association should only render content, not an object containing (@JsonUnwrapped) content, _links and _embedded.
