@@ -1,10 +1,16 @@
 package com.github.jvanheesch.model.serialization;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 public class OriginWoodEvaluation {
     private Long id;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private VerdictRecord supplierLocatedInEurope;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private VerdictRecord flegtLicense;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private VerdictRecord citesLicense;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private VerdictRecord fromIndonesia;
 
     public Long getId() {
