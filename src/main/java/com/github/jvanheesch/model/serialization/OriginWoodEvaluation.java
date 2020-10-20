@@ -1,7 +1,5 @@
 package com.github.jvanheesch.model.serialization;
 
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
-
 import javax.persistence.*;
 
 @Entity
@@ -19,11 +17,6 @@ public class OriginWoodEvaluation {
     private VerdictRecord citesLicense;
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private VerdictRecord fromIndonesia;
-    // dit nieuwe gedrag is volgens mij echter gewoon het juiste gedrag i.t.t. het oude ...
-    // denk maar bvb aan content property
-    // @JsonUnwrapped
-    @Embedded
-    private Person person;
 
     public Long getId() {
         return id;
@@ -59,16 +52,5 @@ public class OriginWoodEvaluation {
 
     public void setFromIndonesia(VerdictRecord fromIndonesia) {
         this.fromIndonesia = fromIndonesia;
-    }
-
-    public Person getPerson() {
-        if (person == null) {
-            person = new Person("joris");
-        }
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
     }
 }
